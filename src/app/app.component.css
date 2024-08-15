@@ -1,0 +1,6 @@
+*{box-sizing: border-box;}
+*{background-color: lightgray;}
+.title{
+    text-align: center;
+    font-size: 2em;
+}

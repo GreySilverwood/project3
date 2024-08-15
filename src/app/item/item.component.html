@@ -1,0 +1,34 @@
+<section class="container">
+
+    <div class="block">
+        <h3>{{itemname}}</h3>
+        <img src="../images/coloredpencils.png" alt="colored pencils">
+    </div>
+
+    <form class="form" #form="ngForm" (ngSubmit)="submitForm(form)">
+        <div class="form_control">
+            <div class="userinput">
+                <label for="quantity">Quantity (between 1 and {{total_in_stock}}):</label>
+                <input type="number" id="quantity" [(ngModel)]="total_added" name="totalAdded" #name='ngModel' min="0" max="{{total_in_stock}}" required pattern="/^[0-9]\d*$/">
+            </div>
+            <!-- Error Message -->
+            <div class="validMsg" >
+                <p class="formErrorMsg" *ngIf="total_added > total_in_stock">There is not enough in stock.</p>
+            </div>
+
+            <div class="receipt">
+                <p>Only {{total_in_stock}} items left.</p> <span>{{outStock}}</span>
+                <p>Total of {{total_added}} items added to the cart.</p>
+                <p>Your previous purchase was {{total_holder}} {{itemname}} in the transaction, spending ${{totalprice}}.</p>
+            </div>
+        </div>
+        <!-- Submit Button -->
+        <div class="form_control">
+            <button (click)="addProduct(total_added)" [disabled]="btn_out_stock && total_added > total_in_stock" class="buttoncart">Add to Cart</button>
+        </div>
+    </form>
+
+    <div class="total">
+        <p>Your total amount is {{totaltotal}} {{itemname}} pricing up to ${{totality}}.</p>
+    </div>
+</section>
